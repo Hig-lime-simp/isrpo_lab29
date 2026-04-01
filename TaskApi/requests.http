@@ -3,22 +3,28 @@
 
 ### GET
 ### Получить все задачи
+Send Request
 GET {{baseUrl}}/api/tasks
 
 ### Получить только выполненные задачи
+Send Request
 GET {{baseUrl}}/api/tasks?completed=true
 
 ### Получить только невыполненные задачи
+Send Request
 GET {{baseUrl}}/api/tasks?completed=false
 
 ### Получить задачу по id
+Send Request
 GET {{baseUrl}}/api/tasks/1
 
 ### Получить несуществующую задачу (ожидаем 404)
+Send Request
 GET {{baseUrl}}/api/tasks/999
 
 ### POST
 ### Создать новую задачу
+Send Request
 POST {{baseUrl}}/api/tasks
 Content-Type: application/json
 
@@ -29,6 +35,7 @@ Content-Type: application/json
 }
 
 ### Попытка создать задачу без заголовка (ожидаем 400)
+Send Request
 POST {{baseUrl}}/api/tasks
 Content-Type: application/json
 
@@ -57,3 +64,18 @@ Content-Type: application/json
 ### DELETE
 ### Удалить задачу (сначала создайте новую через POST)
 DELETE {{baseUrl}}/api/tasks/4
+
+### Поиск задач
+GET {{baseUrl}}/api/tasks/search?query=ASP
+
+### Задачи с высоким приоритетом
+GET {{baseUrl}}/api/tasks/priority/High
+
+### Статистика
+GET {{baseUrl}}/api/tasks/stats
+
+### Отсортированные задачи по приоритету (по возрастанию)
+GET {{baseUrl}}/api/tasks/sorted?by=priority&desc=false
+
+### Отсортированные задачи по дате создания (по убыванию)
+GET {{baseUrl}}/api/tasks/sorted?by=createdAt&desc=true
