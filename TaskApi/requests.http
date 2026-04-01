@@ -1,0 +1,59 @@
+### Переменная — базовый URL (замените порт если отличается)
+@baseUrl = http://localhost:5293
+
+### GET
+### Получить все задачи
+GET {{baseUrl}}/api/tasks
+
+### Получить только выполненные задачи
+GET {{baseUrl}}/api/tasks?completed=true
+
+### Получить только невыполненные задачи
+GET {{baseUrl}}/api/tasks?completed=false
+
+### Получить задачу по id
+GET {{baseUrl}}/api/tasks/1
+
+### Получить несуществующую задачу (ожидаем 404)
+GET {{baseUrl}}/api/tasks/999
+
+### POST
+### Создать новую задачу
+POST {{baseUrl}}/api/tasks
+Content-Type: application/json
+
+{
+    "title": "Задача из REST Client",
+    "description": "Создана через файл .http",
+    "priority": "High"
+}
+
+### Попытка создать задачу без заголовка (ожидаем 400)
+POST {{baseUrl}}/api/tasks
+Content-Type: application/json
+
+{
+    "title": "",
+    "description": "Описание без заголовка",
+    "priority": "Normal"
+}
+
+### PATCH
+### Переключить статус задачи с id=2
+PATCH {{baseUrl}}/api/tasks/2/complete
+
+### PUT
+### Обновить задачу с id=1
+PUT {{baseUrl}}/api/tasks/1
+Content-Type: application/json
+
+{
+    "title": "Изучить ASP.NET Core (обновлено)",
+    "description": "Контроллеры, маршруты, DTO",
+    "isCompleted": true,
+    "priority": "High"
+}
+
+### DELETE
+### Удалить задачу (сначала создайте новую через POST)
+DELETE {{baseUrl}}/api/tasks/4
